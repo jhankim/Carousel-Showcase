@@ -1,0 +1,33 @@
+{
+  "name": "Carousel-ShowCase",
+  "version": "0.0.2",
+  "author": {
+    "name": "Jefferson Peak",
+    "email": "me@jgpeak.com"
+  },
+  "description": "",
+  "main": "server.js",
+  "private": true,
+  "engines": {
+    "node": "~0.10.15",
+    "npm": "~1.2.18"
+  },
+  "scripts": {
+    "start": "node server.js",
+    "postinstall": ""
+  },
+  "dependencies": {
+    "express": "~3.4.6"
+  },
+  "devDependencies": {},
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/jpeak/Carousel-ShowCase.git"
+  },
+  "keywords": [
+    "jgpeak.com",
+    "Jefferson",
+    "Peak"
+  ],
+  "license": "MIT"
+}
