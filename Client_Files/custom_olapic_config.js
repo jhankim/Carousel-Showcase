@@ -65,7 +65,7 @@ olapicCarousel.prototype.api = function(callback){
      });
 };
 
-//TO-DO: Create Function to process API response to Carousel Array
+//Function to process API response to create formated Carousel Array
 olapicCarousel.prototype.processApiResponse = function(apiArray, imageArray, callback){
 	for(var i in apiArray){
 		var imageObject = {};
@@ -80,7 +80,7 @@ olapicCarousel.prototype.processApiResponse = function(apiArray, imageArray, cal
 	if(callback) callback();
 };
 
-//TO-DO: Create Function to Create Carousel based on an array
+//Function to Create Carousel based on an  formated array
 olapicCarousel.prototype.createCarousel = function(targetDiv, imageArray){
 	if(!imageArray) this.log('error', 'No imageArray passed to createCarousel.')
 
@@ -106,18 +106,32 @@ olapicCarousel.prototype.createCarousel = function(targetDiv, imageArray){
 	$(function() {
 		that.log('log', 'Created Carousel targetDiv', [targetDiv]);
 		that.log('log', 'Created Carousel HTMl', [carouselHTML]);
-	    $(targetDiv).html(carouselHTML);
+		if($(targetDiv).length == 0){
+			that.log('error', 'Provided Div ID does not exist', [targetDiv]);
+		}
+		else {
+		    $(targetDiv).html(carouselHTML);
 
-	    $('.bxslider').bxSlider({
-			minSlides: 1,
-			maxSlides: 5,
-			slideWidth: 90,
-			slideMargin: 5
-		});
+		    $('.bxslider').bxSlider({
+				minSlides: 1,
+				maxSlides: 5,
+				slideWidth: 90,
+				slideMargin: 5
+			});
+		}
 	});
 };
 
-//TO-DO: Create Function to Handle light box image view
+//TO-DO: Create Function to Handle light box image view opening
+olapicCarousel.prototype.lightBoxOpen = function(){
+
+};
+
+//TO-DO: Create Function to Handle light box image view closing
+olapicCarousel.prototype.lightBoxClose = function(){
+
+};
+
 
 //TO-DO: Create init function.
 olapicCarousel.prototype.init = function(){
