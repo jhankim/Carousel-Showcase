@@ -112,7 +112,7 @@ olapicCarousel.prototype.createCarousel = function(targetDiv, imageArray){
 		else {
 		    $(targetDiv).html(carouselHTML);
 
-		    $('.bxslider').bxSlider({
+		    $(targetDiv+' .bxslider').bxSlider({
 				minSlides: 1,
 				maxSlides: 5,
 				slideWidth: 90,
