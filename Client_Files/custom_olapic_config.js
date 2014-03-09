@@ -1,6 +1,8 @@
 //Olapic Carousel constructor
-var olapicCarousel = olapicCarousel || function(divID) {
+var olapicCarousel = olapicCarousel || function(divID, minSlides, maxSlides) {
 	this.targetDiv = divID || 'olapicCarousel';
+	this.minSlides = minSlides || 1;
+	this.maxSlides = maxSlides || 5;
 	this.imageArray = [];
 
 	this.init();
@@ -93,10 +95,11 @@ olapicCarousel.prototype.createCarousel = function(targetDiv, imageArray){
 	carouselHTML += openingHTML;
 
 	for(i in imageArray){
+		imageID = imageArray[i].identifier;
 		imageURL = imageArray[i].images.square;
 		imageTitle = imageArray[i].captions;
 
-		carouselHTML += '<li><img src="' + imageURL + '" title="' + imageTitle + '" /></li>';
+		carouselHTML += '<li><a id="' + imageID + '"><img src="' + imageURL + '" title="' + imageTitle + '" /></a></li>';
 	}
 
 	carouselHTML += closingHTML;
@@ -112,24 +115,98 @@ olapicCarousel.prototype.createCarousel = function(targetDiv, imageArray){
 		else {
 		    $(targetDiv).html(carouselHTML);
 
-		    $(targetDiv+' .bxslider').bxSlider({
-				minSlides: 1,
-				maxSlides: 5,
+		    var targetCarousel = $(targetDiv + ' .bxslider');
+
+		    targetCarousel.bxSlider({
+				minSlides: that.minSlides,
+				maxSlides: that.maxSlides,
 				slideWidth: 90,
 				slideMargin: 5
+				, onSliderLoad: function(){
+					// do mind-blowing JS stuff here
+					that.lightBoxCreate();
+					$(targetDiv + ' .bxslider li a').click(function () {
+						var selected = $(this).attr('id');
+						that.log('log', 'Image Clicked for lightbox', [selected]);
+						that.lightBoxOpen(selected);
+					});
+				}
 			});
 		}
 	});
 };
 
 //TO-DO: Create Function to Handle light box image view opening
-olapicCarousel.prototype.lightBoxOpen = function(){
+olapicCarousel.prototype.lightBoxCreate = function(selectedID){
+	var that = this
+		, lightbox = $('#lightbox')
+		, body = $('body');
 
+	// add lightbox/shadow <div/>'s if not previously added
+	if(lightbox.size() == 0){
+		var theLightbox = $('<div id="lightbox"/>');
+		var theShadow = $('<div id="lightbox-shadow"/>');
+		$(theShadow).click(function(e){
+			that.lightBoxClose();
+		});
+		body.append(theShadow);
+		body.append(theLightbox);
+	}
+
+	// remove any previously added content
+	lightbox.empty();
+};
+
+//TO-DO: Create Function to Handle light box image view opening
+olapicCarousel.prototype.lightBoxOpen = function(selectedID){
+	if(!selectedID) this.log('error', 'LightBox can\'t open no ID passed', [selectedID])
+	else this.log('log', 'Lightbox Opening for ', [selectedID]);
+
+	var imageURL = null
+		, imageTitle = 'Carousel Image Lightboxed';
+
+	//Loop through imageArray and find image url for lightbox
+	for(i in this.imageArray){
+		if(this.imageArray[i].identifier === selectedID){
+			imageURL = this.imageArray[i].images.normal;
+			imageTitle = this.imageArray[i].captions
+			break;
+		}
+	}
+	if(imageURL !== null){
+		var imageHTML = '<img src="' + imageURL + '" title="' + imageTitle + '" />'
+			, lightbox = $('#lightbox')
+			, lightboxShadow = $('#lightbox-shadow');
+
+		// remove any previously added content
+		lightbox.empty();
+
+		// insert HTML content
+		if(imageHTML != null){
+			lightbox.html(imageHTML);
+
+		}
+
+		// move the lightbox to the current window top + 100px
+		lightbox.css('top', $(window).scrollTop() + 100 + 'px');
+
+		// display the lightbox
+		lightbox.show();
+		lightboxShadow.show();
+	}
+	else{
+		this.log('error','Clicked on Image ID doesn\'t exist in imageArray',[selectedID]);
+	}
 };
 
 //TO-DO: Create Function to Handle light box image view closing
 olapicCarousel.prototype.lightBoxClose = function(){
+	//Hide lightbox and shadow and empty lightbox contents
+	$('#lightbox').hide();
+	$('#lightbox-shadow').hide();
+	$('#lightbox').empty();
 
+	this.log('log', 'lightbox Closed');
 };
 
 

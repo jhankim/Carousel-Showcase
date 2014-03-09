@@ -4,7 +4,7 @@
 	left: 50%;
 	width: 500px;
 	margin-left: -250px;
-	background: #fff;
+	/*background: #000;*/
 	z-index: 1001;
 	display: none;
 }
@@ -21,4 +21,8 @@
 	opacity: 0.75;
 	z-index: 1000;
 	display: none;
+}
+
+.bx-wrapper .bx-controls-direction a {
+	z-index: 999;
 }
