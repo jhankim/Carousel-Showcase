@@ -10,12 +10,23 @@ var olapicCarousel = olapicCarousel || function(divID, minSlides, maxSlides) {
 
 //Function for Logging Debug Messages
 olapicCarousel.prototype.log = function(type, message, argsArray){
-	var  debug = true
+	$.urlParam = function(name){
+		var results = new RegExp('[\\?&]' + name + '=([^&#]*)').exec(window.location.href);
+		if (results==null){
+			return null;
+		}
+		else{
+			return results[1] || 0;
+		}
+	}
+
+	var  debug = $.urlParam('debug')
 		, identifier = 'OLAPIC CAROUSEL: ';
 
 	if(debug){
 		if(!type) console.error(identifier + 'Missing Log Type');
 		if(!message) console.error(identifier + 'Missing Log Message');
+		if(!argsArray) argsArray = [];
 
 		switch (type){
 			case 'log':
@@ -206,7 +217,7 @@ olapicCarousel.prototype.lightBoxClose = function(){
 	$('#lightbox-shadow').hide();
 	$('#lightbox').empty();
 
-	this.log('log', 'lightbox Closed');
+	this.log('log', 'Lightbox Closed');
 };
 
 
