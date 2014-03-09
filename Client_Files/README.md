@@ -1,7 +1,5 @@
 # Carousel-Showcase
 
----
-
 ## Customized Code for client
 
 ### Files Needed to host
@@ -12,10 +10,16 @@
 4. Style Reset file - style_reset.css
 5. JQuery Library - http://ajax.googleapis.com/ajax/libs/jquery/1.10.1/jquery.min.js
 
+### Example
+
+An example of this running can be found at (http://dry-retreat-5391.herokuapp.com/).
+
+To enable debugging you need to add ?debug=true to the end of the url like this (http://dry-retreat-5391.herokuapp.com/?debug=true).
+
 ### Instructions for Creating a Carousel
 
-In order to create a carousel you need to create and stylize a div for it on the page. Once this is done you can create the carousel with the following JavaScript code. 
+In order to create a carousel you need to create and stylize a div for it on the page. Once this is done you can create the carousel with the following JavaScript code. The MIN_SLIDE_NUMBER and MAX_SLIDE_NUMBER integers are optional. If not entered the Carousel defaults to 1 for the min and 5 for the max. The DIV_ID_STRING option is required.
 
 ```javascript
-var NEW_CAROUSEL_NAME = new olapicCarousel(DIVID_STRING, MIN_SLIDE_NUMBER, MAX_SLIDE_NUMBER);
+var NEW_CAROUSEL_NAME = new olapicCarousel(DIV_ID_STRING, MIN_SLIDE_NUMBER, MAX_SLIDE_NUMBER);
 ```
