@@ -2,6 +2,10 @@
 
 ## Customized Code for client
 
+### Original Instructions
+
+Original instructions can me found at [Olapic API test instructions](https://gist.github.com/jaepanda/700be14948258d548c92).
+
 ### Files Needed to host
 
 1. Contents of bxSlider Library - /lib/bxSlider
