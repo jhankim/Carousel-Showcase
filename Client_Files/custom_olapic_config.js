@@ -23,7 +23,7 @@ olapicCarousel.prototype.log = function(type, message, argsArray){
 	var  debug = $.urlParam('debug')
 		, identifier = 'OLAPIC CAROUSEL: ';
 
-	if(debug){
+	if(debug === 'true'){
 		if(!type) console.error(identifier + 'Missing Log Type');
 		if(!message) console.error(identifier + 'Missing Log Message');
 		if(!argsArray) argsArray = [];
