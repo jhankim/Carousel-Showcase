@@ -136,7 +136,7 @@ olapicCarousel.prototype.createCarousel = function(targetDiv, imageArray){
 	});
 };
 
-//TO-DO: Create Function to Handle light box image view opening
+// Function to Handle light box image view opening
 olapicCarousel.prototype.lightBoxCreate = function(selectedID){
 	var that = this
 		, lightbox = $('#lightbox')
@@ -157,7 +157,7 @@ olapicCarousel.prototype.lightBoxCreate = function(selectedID){
 	lightbox.empty();
 };
 
-//TO-DO: Create Function to Handle light box image view opening
+// Function to Handle light box image view opening
 olapicCarousel.prototype.lightBoxOpen = function(selectedID){
 	if(!selectedID) this.log('error', 'LightBox can\'t open no ID passed', [selectedID])
 	else this.log('log', 'Lightbox Opening for ', [selectedID]);
@@ -199,7 +199,7 @@ olapicCarousel.prototype.lightBoxOpen = function(selectedID){
 	}
 };
 
-//TO-DO: Create Function to Handle light box image view closing
+// Function to Handle light box image view closing
 olapicCarousel.prototype.lightBoxClose = function(){
 	//Hide lightbox and shadow and empty lightbox contents
 	$('#lightbox').hide();
@@ -210,7 +210,7 @@ olapicCarousel.prototype.lightBoxClose = function(){
 };
 
 
-//TO-DO: Create init function.
+// Initialization function.
 olapicCarousel.prototype.init = function(){
 	var imageArray = this.imageArray
 		, targetDiv = this.targetDiv
