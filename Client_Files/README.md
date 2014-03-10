@@ -4,7 +4,7 @@
 
 ### Original Instructions
 
-Original instructions can me found at [Olapic API test instructions](https://gist.github.com/jaepanda/700be14948258d548c92).
+Original instructions can me found at [API test instructions](https://gist.github.com/jaepanda/700be14948258d548c92).
 
 ### Files Needed to host
 
